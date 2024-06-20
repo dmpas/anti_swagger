@@ -1,4 +1,5 @@
 *.ospx
+*.cfe
 test_data/*
 check.bat
 test_feature/*

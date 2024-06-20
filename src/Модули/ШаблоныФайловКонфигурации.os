@@ -10,8 +10,10 @@
 	Для каждого Эл Из СтруктураПараметров Цикл
 		
 		Ключ_Замены = "%" + Эл.Ключ + "%";
-		
 		РезультатЗаполнения = СтрЗаменить(РезультатЗаполнения, Ключ_Замены, Эл.Значение);
+		
+		Ключ_Замены = "%" + Эл.Ключ + ":xml%";
+		РезультатЗаполнения = СтрЗаменить(РезультатЗаполнения, Ключ_Замены, Экранировать(Эл.Значение));
 		
 	КонецЦикла;
 	
@@ -174,7 +176,7 @@
 	|			<Synonym>
 	|				<v8:item>
 	|					<v8:lang>ru</v8:lang>
-	|					<v8:content>%РАСШИРЕНИЕ_СИНОНИМ%</v8:content>
+	|					<v8:content>%РАСШИРЕНИЕ_СИНОНИМ:xml%</v8:content>
 	|				</v8:item>
 	|			</Synonym>
 	|			<Comment/>
@@ -239,10 +241,10 @@
 	|			<Synonym>
 	|				<v8:item>
 	|					<v8:lang>ru</v8:lang>
-	|					<v8:content>%ОБЩИЙМОДУЛЬ_СИНОНИМ%</v8:content>
+	|					<v8:content>%ОБЩИЙМОДУЛЬ_СИНОНИМ:xml%</v8:content>
 	|				</v8:item>
 	|			</Synonym>
-	|			<Comment>%ОБЩИЙМОДУЛЬ_КОММЕНТАРИЙ%</Comment>
+	|			<Comment>%ОБЩИЙМОДУЛЬ_КОММЕНТАРИЙ:xml%</Comment>
 	|			<Global>false</Global>
 	|			<ClientManagedApplication>false</ClientManagedApplication>
 	|			<Server>true</Server>
@@ -282,10 +284,10 @@
 	|			<Synonym>
 	|				<v8:item>
 	|					<v8:lang>ru</v8:lang>
-	|					<v8:content>%СЕРВИС_СИНОНИМ%</v8:content>
+	|					<v8:content>%СЕРВИС_СИНОНИМ:xml%</v8:content>
 	|				</v8:item>
 	|			</Synonym>
-	|			<Comment>%СЕРВИС_КОММЕНТАРИЙ%</Comment>
+	|			<Comment>%СЕРВИС_КОММЕНТАРИЙ:xml%</Comment>
 	|			<RootURL>%СЕРВИС_ПУБЛИКАЦИЯ%</RootURL>
 	|			<ReuseSessions>AutoUse</ReuseSessions>
 	|			<SessionMaxAge>20</SessionMaxAge>
@@ -304,10 +306,10 @@
 	|	<Synonym>
 	|		<v8:item>
 	|			<v8:lang>ru</v8:lang>
-	|			<v8:content>%ШАБЛОН_СИНОНИМ%</v8:content>
+	|			<v8:content>%ШАБЛОН_СИНОНИМ:xml%</v8:content>
 	|		</v8:item>
 	|	</Synonym>
-	|	<Comment>%ШАБЛОН_КОММЕНТАРИЙ%</Comment>
+	|	<Comment>%ШАБЛОН_КОММЕНТАРИЙ:xml%</Comment>
 	|	<Template>%ШАБЛОН_ПУБЛИКАЦИЯ%</Template>
 	|</Properties>
 	|<ChildObjects>
@@ -324,10 +326,10 @@
 	|	<Synonym>
 	|		<v8:item>
 	|			<v8:lang>ru</v8:lang>
-	|			<v8:content>%МЕТОД_СИНОНИМ%</v8:content>
+	|			<v8:content>%МЕТОД_СИНОНИМ:xml%</v8:content>
 	|		</v8:item>
 	|	</Synonym>
-	|	<Comment>%МЕТОД_КОММЕНТАРИЙ%</Comment>
+	|	<Comment>%МЕТОД_КОММЕНТАРИЙ:xml%</Comment>
 	|	<HTTPMethod>%МЕТОД_МЕТОД%</HTTPMethod>
 	|	<Handler>%МЕТОД_ИМЯ_ФУНКЦИИ%</Handler>
 	|</Properties>
@@ -461,38 +463,14 @@
 	|";
 КонецФункции
 
+Функция Экранировать(Знач Строка)
 
+	Строка = СтрЗаменить(Строка, "&", "&amp;");
+	Строка = СтрЗаменить(Строка, "'", "&apos;");
+	Строка = СтрЗаменить(Строка, "<", "&lt;");
+	Строка = СтрЗаменить(Строка, ">", "&gt;");
+	Строка = СтрЗаменить(Строка, """", "&quot;");
 
+	Возврат Строка;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+КонецФункции
